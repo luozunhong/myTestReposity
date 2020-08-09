@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人资料</title>
+  <!-- include the site stylesheet -->
+	<div th:include="aashare::look"></div>
+
+</head>
+<body>
+  <!-- main container of all the page elements -->
+
+	<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+
+					<div class="user-info">
+						<!--标题 -->
+						<div class="am-cf am-padding">
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> / <small>Personal&nbsp;information</small></div>
+						</div>
+						<hr/>
+
+						<!--头像 -->
+						<div class="user-infoPic">
+
+							<div class="filePic">
+								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+								<img class="am-circle am-img-thumbnail"  th:src="@{'/'+${user.head}}"  alt="" />
+							</div>
+
+							<p class="am-form-help">头像</p>
+
+							<div class="info-m">
+								<div><b>用户名：<i>[[${user.uname}]]</i></b></div>
+							</div>
+						</div>
+
+						<!--个人信息th:action="@{/info}"  th:method="post" -->
+						<div class="info-main">
+							<form class="am-form am-form-horizontal"  >
+
+								<div class="am-form-group">
+									<input type="hidden" id="user-uid" th:value="${user.uid}">
+									<label for="user-name2" class="am-form-label">昵称</label>
+									<div class="am-form-content">
+										<input type="text" id="user-name1"  th:value="${user.uname}" name="uname">
+									</div>
+								</div>
+
+								<!--<div class="am-form-group">
+									<label for="user-name2" class="am-form-label">姓名</label>
+									<div class="am-form-content">
+										<input  readonly= "true " type="text" id="user-name2" th:placeholder="${user.realName}"  name="realName">
+									</div>
+								</div>-->
+
+								<div class="am-form-group">
+									<label class="am-form-label">性别</label>
+									<div th:if="${user.gender}==null" class="am-form-content sex">
+									<label class="am-radio-inline">
+										<input  type="radio" name="radio10" value="MALE"  checked="checked" data-am-ucheck>男
+									</label>
+									<label class="am-radio-inline">
+										<input  type="radio" name="radio10" value="FEMALE"  checked="checked" data-am-ucheck>女
+									</label>
+									</div>
+									<div th:if="${user.gender}!=null" class="am-form-content sex">
+										<label class="am-radio-inline">
+											<input th:if="'FEMALE'== ${user.gender.toString()} "   type="radio" name="radio10" value="MALE"   data-am-ucheck>
+											<input th:if="'MALE'== ${user.gender.toString()} " type="radio" name="radio10" value="MALE"  checked="checked" data-am-ucheck>男
+										</label>
+										<label class="am-radio-inline">
+											<input th:if="'MALE'== ${user.gender.toString()} "   type="radio" name="radio10" value="FEMALE" data-am-ucheck>
+											<input th:if="'FEMALE'== ${user.gender.toString()} " type="radio" name="radio10" value="FEMALE"  checked="checked" data-am-ucheck>女
+
+										</label>
+									</div>
+								</div>
+
+								<div class="am-form-group">
+									<label class="am-form-label">生日</label>
+									<div class="am-form-content birth">
+										<div class="birth-select">
+											<input type="date" id="birthDate" th:value="${#dates.format(user.birthDate,'yyyy-MM-dd')}"/>
+										</div>
+									</div>
+
+								</div>
+								<div class="am-form-group">
+									<label for="user-phone" class="am-form-label">电话</label>
+									<div class="am-form-content">
+										<input id="user-phone" th:value="${user.phone}" type="tel" name="phone">
+
+									</div>
+								</div>
+								<div class="am-form-group">
+									<label for="user-email" class="am-form-label">电子邮件</label>
+									<div class="am-form-content">
+										<input id="user-email" th:value="${user.email}" name="email" type="email">
+
+									</div>
+								</div>
+								<div class="info-btn">
+									<a type="button" id="inf"   class="am-btn am-btn-danger" >修改</a>
+								</div>
+
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+  <!-- include jQuery -->
+  <!-- include jQuery -->
+
+  <div th:include="aashare::foots"></div>
+  <script  th:src="@{/asserts/js/particles.js}" ></script>
+
+</body>
+</html>

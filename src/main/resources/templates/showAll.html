@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>展示</title>
+  <!-- include the site stylesheet -->
+    <div th:include="aashare::look"></div>
+</head>
+<body>
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <!-- Page Loader -->
+      <div id="pre-loader" class="loader-container">
+          <div class="loader">
+              <img th:src="@{/asserts/images/svg/rings.svg}" alt="loader">
+          </div>
+      </div>
+      <!-- W1 start here -->
+ <div class="w1">
+     <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+      <!-- Main of the Page -->
+      <main id="mt-main">
+        <!-- Mt Contact Banner of the Page -->
+        <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/1.jpg); height: 205px;width: 1920px;">
+          
+        </section>
+        <!-- Mt Contact Banner of the Page end -->
+
+        <!-- Mt Blog Detail of the Page -->
+        <div class="mt-blog-detail style4">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 header wow fadeInUp" data-wow-delay="0.4s">
+                <!-- Breadcrumbs of the Page -->
+                
+                <!-- Breadcrumbs of the Page end -->
+                <span class="category"><a href="#"><i class="fa fa-th"></i></a></span>
+                <ul class="list-unstyled align-right">
+                  <li>px
+                    搜索 <a href="#"><i class="fa fa-search"></i></a>
+                  </li>
+                  <li>
+                    分类 <a href="#"><i class="fa fa-bars"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 header-holder">
+                <h2>家，交给我们</h2>
+				
+                <div class="txt-wrap">
+                  <p>实木定制:个性奢华，低碳环保，安全健康，时尚生活，人性化的创意,优雅高贵，无微不至。一站试全屋家具高端定制服
+务:原木整体衣柜、衣帽间,橱柜，书柜，酒柜酒窖,原木护墙板、天花吊顶，原门楼梯。</p>
+
+<p>智能家居:通过智能安防系统智能灯光系统、智能家电系统、智能窗帘系统等一系列自动化家居 系统，构建高效的住宅设施
+与家庭日程事务的管理系统，提升家居安全性、便利性、舒适性、艺术性，并实现环保节能的居住环境。</p>
+</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="mt-iso" id="blog-isotops">
+                <!-- Post Blog of the Page -->
+                <article class="post-blog wow fadeInLeft" data-wow-delay="0.4s">
+                  <div class="img-holder">
+                    <img th:src="@{/asserts/images/a1.jpg}" width="375px" height="295px">
+                  </di>
+                  <div class="txt-holder">
+					  <h3>深圳汉森吉祥龙花园</h3>
+					  <p>汉森吉祥龙公馆，深圳湾绝版之作，是汉森集团秉承“顺天时、
+造地利、调人和”的开发理念，精雕细琢，用心打造匹配湾区稀缺土地价值的第一居所顶级豪 宅。
+</p>  
+                  </div>
+                  </div>
+                </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+                <article class="post-blog wow fadeInUp" data-wow-delay="0.4s">
+                  <div class="img-holder">
+					  <img th:src="@{/asserts/images/a2.jpg}" width="375px" height="295px">
+                  </div>
+
+                  <div class="txt-holder">
+					  <h3>美的鹭湖森林度假区</h3>
+					  <p>在广佛肇经济圈中心腹地，珠三角最后的净---佛山高明，美的地产集团与皇朝地产强强联袂，于6800亩鹭林湖山间，斥300亿巨资，依照..</p>
+                 
+				  </div>
+                </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+                <article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                 <div class="img-holder">
+                 	<img th:src="@{/asserts/images/a3.jpg}" width="375px" height="295px">
+                 </div>
+				 <div class="txt-holder">
+				 	 <h3>浦江华侨城 别墅样板房</h3>
+				 	 <p>“光”与“影”，看似虚无,却可以赋予建筑和空间真正的魅力。当从繁华到有些喧闹的城市中走出来,你会发现,空间是一种生活方式的超越,是设计师用心去创造出来的。</p>
+				 </div>
+                    
+                </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+                <article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                 <div class="img-holder">
+                 	<img th:src="@{/asserts/images/a4.jpg}" width="375px" height="295px"/>
+                 </div>
+                 <div class="txt-holder">
+                 	 <h3>上海华润别墅样板房软装</h3>
+                 	 <p>家具以芭蕾舞为原形,细节上采用细致典雅的雕花,玲珑起伏尽显柔美。华丽的水蓝色缎面及带有卷草元素的古典烛台,浪漫清新之感扑面而来,水晶与金结合是如此的富丽堂皇,印象派古典油画给整个空间增加历史文化气息，彰显“法式言殿" 的皇家风范。</p>
+                 </div>
+                </article>    
+                <article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                 <div class="img-holder">
+                 	<img th:src="@{/asserts/images/a5.jpg}" width="375px" height="295px"/>
+                 </div>
+                 <div class="txt-holder">
+                 	 <h3>深圳布吉私人自建别墅</h3>
+                 	 <p>有着超大的视觉平面空间，有着南北通透的舒适方位，不再为空间缺少而烦忧，不再为某个地方缺少自然光而伤动脑筋。- 路走来，风雨之前，阳光殿后; - 切都是这么自然，大气度，才决定了今天大场面的视觉归依。
+</p>
+                 </div>
+                    
+                </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+                </article>
+               <article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                  <div class="img-holder">
+                    <img th:src="@{/asserts/images/a6.jpg}" width="375px" height="295px"/>
+                  </div>
+                <div class="txt-holder">
+                  <h3>地中海的阳光照亮田园梦想</h3>
+                   <p>复式结构的房子，
+, 设计要求除客餐厅、卫生间、厨房外得有两个卧室一个书房。书房区域，敞开的书柜透出装饰性很强的砖片背景，客厅整体造型的设计搭配深色调的色彩突出了设计风格，定制的沙发从色调上呼应了地面的
+</p>
+                </div>
+                                    
+               </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+                <article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                 <div class="img-holder">
+                 	<img th:src="@{/asserts/images/a7.jpg}" width="375px" height="295px"/>
+                 </div>
+                 <div class="txt-holder">
+                 	 <h3>苏州仁恒棠北浅山别墅</h3>
+                     <p>偌大的客厅布置优雅简约，以具肌理感的浅咖色扪布墙身配合银灰洞石地台，为大宅奠下雅致时尚的格调。淡灰色羊毛真丝地毯上,摆放着线条明快的浅灰色Giorgetti沙发及米黄色木质茶几，在水晶吊灯的映衬下，焕发瑰丽和谐的气氛p</p>>
+				</div>
+                </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+                <article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                 <div class="img-holder">
+                 	<img th:src="@{/asserts/images/a8.jpg}" width="375px" height="295px"/>
+                 </div>
+                 <div class="txt-holder">
+                 	 <h3>大未来样板房-新东方风</h3>
+                 	 <p>-上海的历史背景成就独特的租界风格，中西并融于同一地景，东西文化激盪为殊异的人文景观。现今兴起的「新上海风」，强调不带夸饰的低调奢华，不以传统的金银龙风符号标示门地位，而以兼容并蓄的陈设取而代之，打造东大
+器宅邸的同时，也让家回归静心的本质。</p>
+                 </div>
+                </article>
+                <!-- Post Blog of the Page end -->
+                <!-- Post Blog of the Page -->
+				<article class="post-blog wow fadeInRight" data-wow-delay="0.4s">
+                 <div class="img-holder">
+                 	<img th:src="@{/asserts/images/a9.jpg}" width="375px" height="295px"/>
+                 </div>
+                 <div class="txt-holder">
+                 	 <h3>广东佛山 美的鹭湖酒店</h3>
+                 	 <p>广东佛山 美的鹭湖酒店，传承岭南花园酒店高端出品和优质服务，由鹭湖畔的法式奢华精品酒店、古茶园和花海围绕的时尚酒店公寓和森林养生温泉中心组成，旨在为家庭休
+闲度假宾客带来高水准的豪华体验。
+</p>
+                 </div>
+                </article>
+                <!-- Post Blog of the Page end -->
+              </div>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <!-- Mt Blog Detail of the Page end -->
+      </main>
+      <!-- footer of the Page -->
+     <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+		</div><!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+  <div th:include="aashare::foots"></div>
+  <script  th:src="@{/asserts/js/my.js}" ></script>
+
+</body>
+</html>

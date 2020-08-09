@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>风格</title>
+  <!-- include the site stylesheet -->
+    <div th:include="aashare::look"></div>
+</head>
+<body>
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <!-- Page Loader -->
+    <div id="pre-loader" class="loader-container">
+    <!-- W1 start here -->
+  </div>
+    <div class="w1">
+        <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+      <!-- Main of the Page -->
+      <main id="mt-main">
+        <!-- Mt Contact Banner of the Page -->
+        <section class="mt-contact-banner style4 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/1.jpg);  height: 300px;width: 1920px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <h1>STYLE</h1>
+                <!-- Breadcrumbs of the Page -->
+               
+                <!-- Breadcrumbs of the Page end -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <a href="#" class="search">Search <i class="fa fa-search"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Mt Contact Banner of the Page end -->
+        <!-- Mt Blog Detail of the Page -->
+        <div class="mt-blog-detail style1">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-8 wow fadeInLeft" data-wow-delay="0.4s">
+                <!-- Blog Post of the Page -->
+                <article class="blog-post style2" th:each="product,status:${style}">
+                  <div class="img-holder">
+                    <a th:href="@{'/gem/lifestyle/id?style='+${product.style}+'&sname='+${product.sname}}"><img src="http://placehold.it/280x170" th:src="@{'/'+${product.picture}}" width="280px" height="170px"></a>
+                  </div>
+                  <div class="blog-txt" >
+                    <h2><a >[[${product.sname}]]</a></h2>
+                    <ul class="list-unstyled blog-nav">
+                    </ul>
+                    <h3>[[${product.design}]]</h3>
+                  </div>
+                </article>
+                <!-- Blog Post of the Page end -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mt Blog Detail of the Page end -->
+      </main>
+      <!-- footer of the Page -->
+        <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+		</div><!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+	<!-- include jQuery -->
+  <div th:include="aashare::foots"></div>
+  <script  th:src="@{/asserts/js/my.js}" ></script>
+</body>
+</html>

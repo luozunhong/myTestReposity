@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心</title>
+  <!-- include the site stylesheet -->
+	<div th:include="aashare::look"></div>
+</head>
+<body>
+  <!-- main container of all the page elements -->  
+  <div id="wrapper">
+    <!-- Page Loader -->
+    <div class="w1">
+		<header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+
+      <!-- Main of the Page -->
+      <main id="mt-main">
+        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(asserts/images/3.jpg);" width="1920px" height="325px">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <!-- Breadcrumbs of the Page -->
+                <nav class="breadcrumbs">
+                  <ul class="list-unstyled">
+                  </ul>
+                </nav>
+                <!-- Breadcrumbs of the Page end -->
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Mt Product Table of the Page -->
+		<div class="center">
+			<div id="empData" class="col-main">
+				<div class="main-wrap">
+					<div class="wrap-left">
+						<div class="wrap-list">
+							<div class="m-user">
+								<!--个人信息 -->
+								<div class="m-bg"></div>
+								<div class="m-userinfo">
+									<div class="m-baseinfo">
+										<a href="information.html">
+											<img th:src="@{/asserts/images/2.jpg}">
+										</a>
+										<em class="s-name">[[${user.uname }]]<span class="vip1"></span></em>
+										<!--<div class="s-prestige am-btn am-round">会员福利</div>-->
+									</div>
+									<!--<div class="m-right">
+										<div class="m-new">
+											<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
+										</div>
+										<div class="m-address">
+											<a href="address.html" class="i-trigger">我的收货地址</a>
+										</div>
+									</div>-->
+								</div>
+
+							</div>
+							<div class="box-container-bottom"></div>
+
+							<!--订单 -->
+							<div class="m-order">
+								<div class="s-bar">
+									<i class="s-icon"></i>我的
+									<a class="i-load-more-item-shadow" href="javascript:void(0)" onclick="javascript:aaa('order')">全部订单</a>
+								</div>
+								<ul>
+									<li><a href="javascript:void(0)" onclick="javascript:aaa('order')"><i><img th:src="@{/asserts/assistant/images/pay.png}"/></i><span>全部订单</span></a></li>
+								</ul>
+                                <ul>
+                                    <li><a href="javascript:void(0)" onclick="javascript:aaa('information')"><i><img th:src="@{/asserts/assistant/images/pay.png}"/></i><span>个人信息</span></a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="javascript:void(0)" onclick="javascript:aaa('address')"><i><img th:src="@{/asserts/assistant/images/pay.png}"/></i><span>收货地址</span></a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="javascript:void(0)" onclick="javascript:aaa('comment')"><i><img th:src="@{/asserts/assistant/images/pay.png}"/></i><span>评价</span></a></li>
+                                </ul>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<aside th:include="aashare::cb"  class="menu"></aside>
+		</div>
+
+        <div class="paddingbootom-md hidden-xs"></div>
+      </main><!-- Main of the Page end here -->
+      <!-- footer of the Page -->
+		<footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+      <!-- footer of the Page end -->
+    </div>
+    <span id="back-top" class="fa fa-arrow-up"></span>
+  </div>
+  <div th:include="aashare::foots"></div>
+  <script type="text/javascript">
+	  var sitenull=[[${session.sitenull}]]
+	  $(function() {
+		  if(sitenull=="0"){
+		  	$.get(base+"/delses"
+			,function (data) {
+				alert("请添加地址");
+				$('#empData').load(base+"/address");
+
+			});
+		  }
+	  });
+
+
+	  function fukuan(){
+		  $("#dingdan").load(base+"/order1")
+	  }
+	  function fahuo(){
+		  $("#dingdan").load(base+"/order2")
+	  }
+	  function shouhuo(){
+		  $("#dingdan").load(base+"/order3")
+	  }
+	  function pingjia(){
+		  $("#dingdan").load(base+"/order4")
+	  }
+	  function suoyou(){
+		  $("#dingdan").load(base+"/order5")
+	  }
+
+	  function delorderone(pid) {
+		  alert(pid)
+		  $.ajax({
+			  type:"delete",
+			  url:base+"/ddsc",
+			  data:{pid:pid},
+			  traditional:true,
+			  success: function (data) {
+				  alert(data)
+				  $('#empData').load(base+"/order");
+			  }
+		  });
+	  }
+	  function pinglun(no) {
+		  window.location=base+"/add/"+no;
+	  }
+	  function qrsh(pid) {
+		  alert(pid)
+		  $.ajax({
+			  type:"post",
+			  url:base+"/qrsh",
+			  data:{"pid":pid},
+
+			  traditional:true,
+			  success: function (data) {
+				  alert(data)
+				  $('#empData').load(base+"/order");
+			  }
+		  });
+	  }
+
+	  function pinglun(no) {
+		  window.location=base+"/add/"+no;
+	  }
+  </script>
+
+
+
+
+
+
+</body>
+</html>

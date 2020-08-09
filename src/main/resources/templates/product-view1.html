@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- set the encoding of your site -->
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<title>商品</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- include the site stylesheet -->
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700' rel='stylesheet' type='text/css'>
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/bootstrap.css}" >
+
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/animate.css}" >
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/icon-fonts.css}">
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/main.css}">
+
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/responsive.css}">
+	<script th:inline="javascript">
+		var base = [[${#request.getContextPath()}]];
+	</script>
+</head>
+<body>
+	<div>
+		<ul class="mt-productlisthold list-inline">
+								<li th:each="product,status:${asc}">
+									<!-- mt product2 start here -->
+									<div class="mt-product2" style="width: 100%; max-width: 280px" >
+										<!-- box start here -->
+										<div class="box" >
+											<img alt="image description" th:src="@{'/'+${product.picture}}" width="280px" height="295px">
+											<ul class="links">
+												<li><a href="javascript:void(0)" th:onclick="|cart(${product.pid})|"><i class="icon-handbag"></i></a></li>
+												<li><a href="javascript:void(0)" th:onclick="|save(${product.pid})|"><i class="icon-heart"></i></a></li>
+											</ul>
+										</div>
+										<div class="txt" >
+											<a th:href="@{'/gem/view'+${product.pid}}"><strong class="title">[[${product.pname}]]</strong></a>
+											<span class="price"><i class="fa fa-eur"></i> <span>[[${product.price}]]</span></span>
+										</div>
+									</div>
+								</li>
+							</ul>
+	</div>
+	<script>
+		function cart(pid) {
+			$.ajax({
+				type: "Get",
+				url: base+"/gem/carts/"+pid,
+				success: function (data) {
+					if(data==1){
+						alert("添加购物车成功!");
+					}
+				}
+			});
+		}
+	</script>
+	<script>
+		function save(pid) {
+			$.ajax({
+				type: "GET",
+				url: base+"/gem/wishs/"+pid,
+				success: function (data) {
+					if(data==1){
+						alert("收藏成功!");
+					}
+				}
+			});
+		}
+	</script>
+</body>
+</html>

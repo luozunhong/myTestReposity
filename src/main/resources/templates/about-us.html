@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们</title>
+    <div th:include="aashare::look"></div>
+</head>
+<body>
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <!-- Page Loader -->
+    <div id="pre-loader" class="loader-container">
+      <div class="loader">
+        <img th:src="@{/asserts/images/svg/rings.svg}" alt="loader">
+      </div>
+    </div>
+    <div class="w1">
+        <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+             <main id="mt-main">
+        <!-- Mt Content Banner of the Page -->
+        <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/1.jpg);background-size: 1920px 600px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                
+                <nav class="breadcrumbs">
+                 
+                </nav>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Mt Content Banner of the Page end -->
+        <!-- Mt About Section of the Page -->
+        <section class="mt-about-sec wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="txt">
+                  <h2>我们怎么样?</h2>
+                  <p>我们卖的都是良心产品，品质有保障， </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Mt About Section of the Page -->
+        <!-- Mt Team Section of the Page -->
+        <section class="mt-team-sec">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <h3>我家的理念</h3>
+                <div class="holder">
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                        <img th:src="@{/asserts/images/1.1.jpg}" width="280px" height="290px"; alt="CLARA WOODEN">
+                    </div>
+                    <div class="mt-txt">
+                      <h4><a href="#">纯天然</a></h4>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{/asserts/images/20.1.jpg}" width="280px" height="290px"; alt="JOHN WICK">
+                      </a>
+                    </div>
+                    <div class="mt-txt">
+                      <h4><a href="#">无农药</a></h4>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInRight" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{/asserts/images/16.3.jpg}" width="280px" height="290px"; alt="HARRY KANE">
+                      </a>
+                    </div>
+                    <div class="mt-txt">
+                      <h4><a href="#">不打蜡</a></h4>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{/asserts/images/h1.jpg}" width="280px" height="290px"; alt="HARRY KANE">
+                      </a>
+                    </div>
+					  <div class="mt-txt">
+                      <h4><a href="#">不催熟</a></h4>
+
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Mt About Section of the Page -->
+        <!-- Mt Workspace Section of the Page -->
+       <!-- <section class="mt-workspace-sec wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <h2>我们的工作空间</h2>
+              </div>
+            </div>
+          </div>
+          &lt;!&ndash; Work Slider of the Page &ndash;&gt;
+          <ul class="list-unstyled work-slider">
+            <li>
+              <div class="img-holder">
+                <img th:src="@{/asserts/images/about/1.1.jpg}" width="545px";height="545px"; alt="image description">
+              </div>
+              <div class="img-holder">
+                <div class="coll1">
+                  <img th:src="@{/asserts/images/about/20.1.jpg}" height="310px";width="245px"; alt="image description">
+                </div>
+                <div class="coll2">
+                  <img th:src="@{/asserts/images/about/16.3.jpg}" width="385px";height="310px"; alt="image description">
+                </div>
+                <div class="coll3">
+                  <img th:src="@{/asserts/images/about/h1.jpg}" width="640px";height="220px"; alt="image description">
+                </div>
+              </div>
+            </li>
+
+
+          </ul>
+          &lt;!&ndash; Work Slider of the Page end &ndash;&gt;
+        </section>-->
+        <!-- Mt Workspace Section of the Page -->
+      </main><!-- Main of the Page end -->
+        <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+		</div><!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+	<!-- include jQuery -->
+  <div th:include="aashare::foots"></div>
+</body>
+</html>

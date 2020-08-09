@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm">
+
+<tr th:each="order,status:${pages.records}">
+    <td>
+        <input type="checkbox" name="id" th:value="${order.oid}" lay-skin="primary"></td>
+    <td>[[${order.no}]]</td>
+    <td>[[${order.uname}]]</td>
+    <td>[[${order.address}]]</td>
+    <td>[[${order.phone}]]</td>
+    <td>[[${order.price}]]</td>
+    <td>[[${order.count}]]</td>
+    <td>[[${order.total}]]</td>
+    <td>
+        <img class="orderPriture" th:src="@{'/'+${order.picture}}">
+    </td>
+    <td>[[${#dic.getDictValue('order_status',order.cateId)}]]</td>
+    <td>[[${#dates.format(order.orderTime,'yyyy-MM-dd HH:mm:ss')}]]</td>
+    <td class="td-manage">
+        <button class="layui-btn layui-btn layui-btn-xs" th:id="${order.oid}" onclick="xadmin.open('修改','/furniture/order-edit/'+id)" ><i class="layui-icon">&#xe642;</i>修改</button>
+        <button class="layui-btn layui-btn-danger" th:id="${order.oid}"  th:onclick="|member_del(this,${order.oid})|" >
+            <i class="layui-icon"></i>删除</button>
+
+    </td>
+</tr>
+
+<div class="layui-card-body ">
+    <div class="page">
+        <div>
+            <a class="num" th:href="'javascript:go('+${pages.getCurrent()- 1}+')'">上一页</a>
+
+            <b style="color:red;font-size: 20px">[[${pages.getCurrent()}]]/[[${pages.getPages()}]]</b>
+
+            <a  class="num" th:href="'javascript:go('+${pages.getCurrent()+ 1}+')'">下一页</a>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单管理</title>
+    <div th:include="aashare::look"></div>
+    <link rel="stylesheet" th:href="@{/asserts/css/font.css}">
+    <link rel="stylesheet" th:href="@{/asserts/css/xadmin.css}">
+    <link  rel=stylesheet type=text/css th:href="@{/asserts/css/orstyle.css}" >
+    <script type="text/javascript" th:src="@{/asserts/js/xadmin.js}"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/jquery.js}"></script>
+    <script th:src="@{/asserts/lib/layui/layui.js}" charset="utf-8"></script>
+<body>
+<form  th:method="post" th:action="@{/pay}">
+    <div class="s-content" id="dingdan">
+        <ul class="lg-list"  th:each="order,status:${orders}">
+
+            <li class="lg-item">
+                <form th:method="post" th:action="@{/pay}">
+                    <div class="item-info">
+                        <a href="@{'/'+${order.picture}}">
+                            <img class="orderPriture" th:src="@{'/'+${order.picture}}"> </a>
+                    </div>
+                <div class="lg-info">
+                    <input type="hidden" th:value="${order.pid}" name="pid"/>
+                    <input id="WIDsubject" name="WIDsubject" type="hidden" th:value="${order.pname}"/>
+                    <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" th:value="${order.total}"/>
+                    <input id="WIDout_trade_no" name="WIDout_trade_no" th:value="${order.no}" type="hidden"/>
+                    <span th:name="WIDsubject"> 商品:<b>[[${order.pname}]]</b></span><br>
+                    <span>单价:[[${order.price}]]</span><br>
+                    <span>数量:[[${order.count}]]</span><br>
+                    <span>总价:[[${order.total}]]</span><br>
+                    <span>地址:[[${order.address}]]</span><br>
+                    <span>状态:[[${#dic.getDictValue('order_status',order.cateId)}]]</span><br>
+                    <time>订单时间:[[${#dates.format(order.orderTime,'yyyy-MM-dd HH:mm:ss')}]]</time><br>
+                    <span>订单编号:[[${order.no}]]</span><br>
+                    <div  class="col-xs-12 col-sm-6 text-right">
+                        <div class="mt-top-lang">
+                            <input style="color: red"   type="submit" th:if="${order.getCateId()==1}" th:value="立即支付" class="lang-opener">
+                            <a style="color: red"  href="javascript:void(0)"  th:onclick="|delorderone(${order.pid})|"  th:if="${order.getCateId()==1}"  class="lang-opener">删除订单</a>
+                        </div>
+                        <div class="mt-top-lang">
+                            <a style="color: red"  th:if="${order.getCateId()==2}" class="lang-opener">提醒发货</a>
+                        </div>
+                        <div class="mt-top-lang">
+                            <a  style="color: red" th:if="${order.getCateId()==3}"  href="javascript:void(0)" th:onclick="|qrsh([[${order.pid]]})|"  class="lang-opener">确认收货</a>
+                        </div>
+                        <div class="mt-top-lang">
+                            <a  style="color: red"  th:if="${order.getCateId()==4}"  href="javascript:void(0)"  th:onclick="pinglun([[${order.no}]]);" class="lang-opener">立即评价</a>
+                        </div>
+
+                    </div>
+                </div>
+                </form>
+            </li>
+
+            <div class="clear"></div>
+        </ul>
+    </div>
+</form>
+
+</body>
+</html>

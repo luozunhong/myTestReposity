@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- set the encoding of your site -->
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>评价管理</title>
+	<div th:include="aashare::look"></div>
+</head>
+<body>
+
+<div class="col-main">
+	<div class="main-wrap">
+
+		<div class="user-comment">
+			<!--标题 -->
+			<div class="am-cf am-padding">
+				<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">评价管理</strong> / <small>Manage&nbsp;Comment</small></div>
+			</div>
+			<hr/>
+
+			<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
+
+				<ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs">
+					<li class="am-active"><a href="#tab1">所有评价</a></li>
+				</ul>
+
+				<div class="am-tabs-bd" th:each="evaluate,status:${furEvaluates}">
+					<div class="am-tab-panel am-fade am-in am-active" id="tab1" >
+						<div class="comment-main">
+							<div class="comment-list">
+								<ul class="item-list">
+									<a th:href="@{/gem/view}+${evaluate.pid}" th:if="${null!=evaluate.isImage}" class="lang-opener"><img th:src="@{'/'+${evaluate.isImage}}" class="itempic" width="200px" height="200px"></a>
+									<div class="comment-top">
+										<input type="hidden" th:value="${evaluate.eid}" name="eid"/>
+										<input id="WIDsubject" name="WIDsubject" type="hidden" th:value="${evaluate.pname}"/>
+										<span th:name="WIDsubject"> 商品:<b>[[${evaluate.pname}]]</b></span><br>
+										评论内容:<span th:utext="${evaluate.comment}"></span>
+										<time>评论时间:[[${#dates.format(evaluate.dateTime,'yyyy-MM-dd HH:mm:ss')}]]</time><br>
+										<div  class="col-xs-12 col-sm-6 text-right"></div>
+									</div>
+
+								</ul>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
+<div th:include="aashare::foots"></div>
+</body>
+</html>

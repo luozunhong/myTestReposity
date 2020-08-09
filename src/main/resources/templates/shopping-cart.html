@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+    <div th:include="aashare::look"></div>
+    </head>
+<body>
+  <!-- main container of all the page elements -->  
+  <div id="wrapper">
+    <!-- Page Loader -->
+      <div id="pre-loader" class="loader-container">
+          <div class="loader">
+              <img th:src="@{asserts/images/svg/rings.svg}" alt="loader">
+          </div>
+      </div>
+    <div class="w1">
+        <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+      <!-- Main of the Page -->
+      <form  th:method="get" th:action="@{/buyNow}">
+      <main id="mt-main">
+        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/1.jpg);">
+          <div class="container"></div>
+        </section>
+        <!-- Mt Process Section of the Page -->
+        <div class="mt-process-sec wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <ul class="list-unstyled process-list">
+                  <li class="active">
+                    <span class="counter">01</span>
+                    <strong class="title">购物车</strong>
+                  </li>
+                  <li>
+                    <span class="counter">02</span>
+                    <strong class="title">结账</strong>
+                  </li>
+                  <li>
+                    <span class="counter">03</span>
+                    <strong class="title">支付完成</strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div><!-- Mt Process Section of the Page end -->
+        <!-- Mt Product Table of the Page -->
+
+        <div class="mt-product-table wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row border" >
+              <div class="col-xs-12 col-sm-1">
+                <strong class="title">全选</strong>
+              </div>
+              <div class="col-xs-12 col-sm-3">
+                <strong class="title">产品</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <strong class="title">单价</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <strong class="title">数量</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <strong class="title">总计</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <strong class="title">操作</strong>
+              </div>
+            </div>
+            <div class="row border" th:each="product,status:${product}">
+              <div class="col-xs-12 col-sm-1">
+                <input name="ids" onclick="totals()" th:type="checkbox" th:value="${product.cid}">
+              </div>
+                <div class="img-holder col-xs-12 col-sm-2" >
+                  <a th:href="@{'/gem/view'+${product.pid}}" > <img src="http://placehold.it/105x105" th:src="@{'/'+${product.picture}}" width="105" height="105"></a>
+                </div>
+              <div class="col-xs-12 col-sm-2" >
+                <strong class="product-name">[[${product.pname}]]</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2" >
+                <strong class="price">[[${product.price}]]￥</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                 <form  class="qyt-form">
+                  <fieldset>
+
+                        <a type="button" href="javascript:void(0)" th:onclick="|subtract(${product.cid},${product.price})|" value="-" >-</a>
+                        <span th:id="${product.cid}"  >[[${product.count}]]</span>
+                        <a type="button" href="javascript:void(0)" th:onclick="|pluss(${product.cid},${product.price})|" value="+" >+</a>
+
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <strong class="price"> ¥</i></strong>
+                <strong th:id="aa+${product.cid}" class="price"> [[${product.price} * ${product.count}]]</strong>
+              </div>
+              <div class="col-xs-12 col-sm-1" th:value="${product.cid}">
+                <a href="javascript:void(0)" th:onclick="|delBycid(this,${product.cid})|"><i class="fa fa-close"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="mt-detail-sec style1 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row" >
+              <div class="col-xs-12" >
+                <h2>购物车</h2>
+                <ul class="list-unstyled block cart">
+                  <li>
+                    <div class="txt-holder">
+                      <strong class="title sub-title pull-left">小计</strong>
+                      <div class="txt pull-right">
+                        <span id="total"> 0￥</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="txt-holder">
+                      <strong class="title sub-title pull-left">运费</strong>
+                      <div class="txt pull-right">
+                        <strong>免运费</strong>
+                      </div>
+                    </div>
+                  </li>
+                  <li style="border-bottom: none;">
+                    <div class="txt-holder">
+                      <strong class="title sub-title pull-left">总计</strong>
+                      <div class="txt pull-right">
+                        <span id="totals">0￥</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <input id="jsid" disabled type="submit" class="process-btn" value="结算"><i class="fa fa-check"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mt Detail Section of the Page end -->
+      </main><!-- Main of the Page end here -->
+      </form>
+      <!-- footer of the Page -->
+        <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+      <!-- footer of the Page end -->
+    </div>
+    <span id="back-top" class="fa fa-arrow-up"></span>
+  </div>
+  <!-- include jQuery -->
+
+  <div th:include="aashare::foots"></div>
+  <script  th:src="@{/asserts/js/my.js}" ></script>
+  <script>
+    function delBycid(obj, cid) {
+      //发异步删除数据
+      $.ajax({
+        type: "DELETE",
+        url: base+'/cartes/'+cid,
+        success:function (data) {
+          if (data=="1"){
+            $(obj).parents("tr").remove();
+            alert("已删除!")
+          }
+        },
+        error:function () {
+        }
+      });
+    }
+  </script>
+<script>
+   function subtract(acid,price) {
+    var count=$("#"+acid).text();
+    if(count>1){
+      $.post(base+"/alter",{
+          cid:acid,
+          count:parseInt(count)-1
+      }, function (data) {
+        if(data==0) {
+          $("#" + acid).text(parseInt(count) - 1);
+          $("#aa" + acid).text(parseInt(price) * (parseInt(count) - 1));
+          totals();
+        }
+      });
+    }
+  }
+   function pluss(acid,price) {
+     var count=$("#"+acid).text();
+     if(count<50){
+       $.post(base+"/alter",{
+         cid:acid,
+         count:parseInt(count)+1
+       }, function (data) {
+         if(data==0){
+            $("#" + acid).text(1 + parseInt(count));
+            $("#aa" + acid).text(parseInt(price) * (parseInt(count) + 1));
+            totals();
+         }
+       });
+     }
+   }
+   function  totals() {
+     var ids = [];
+     var num=0,aa;
+     // 获取选中的id
+     $("input[name='ids']:checked").each(function(){
+       ids.push($(this).val());
+       aa=$("#aa" + $(this).val()).text();
+       num+=parseInt(aa);
+     });
+     $("#total").text(num);
+     $("#totals").text(num);
+     if(ids!=""){
+       $("#jsid").attr("disabled",false);
+     }
+   }
+
+   // function buy() {
+   //   var ids = [];
+   //   $("input[name='checkbox1']:checked").each(function(){
+   //     ids.push($(this).val());
+   //   });
+   //   if(ids!=""){
+   //     $.ajax({
+   //       type:"get",
+   //       data: {ids:ids},
+   //       url:base+'/gem/buyNow',
+   //       traditional:true,
+   //       cache: false,
+   //       success:function () {
+   //
+   //       }
+   //     });
+   //      // window.location=base+"/gem/checkout/?="+ids;
+   //   }
+   // }
+</script>
+
+</body>
+</html>

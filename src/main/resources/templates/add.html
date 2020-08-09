@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>富文本编辑器</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var base = [[${#request.getContextPath()}]]; //获取当前应用路径
+        /*]]>*/
+    </script>
+</head>
+<body>
+
+<!--wangEditor渲染位置-->
+<div id="editor"></div>
+
+<!--隐藏域用来保存富文本编辑器中的内容-->
+<form th:action="@{/uploadContent}" th:method="post" >
+
+    <input type="hidden" th:name="no" th:id="no" th:value="${no}">
+    <input type="hidden" name="comment" id="comment" >
+    <input type="submit" value="提交"/>
+</form>
+<script th:src="@{/asserts/js/jquery-1.11.1.js}"></script>
+<script th:src="@{/asserts/js/wangEditor.min.js}"></script>
+<script th:src="@{/asserts/js/we.js}"></script>
+</body>
+
+</html>

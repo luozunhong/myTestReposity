@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定手机</title>
+  <!-- include the site stylesheet -->
+	<div th:include="aashare::look"></div>
+
+</head>
+<body>
+			<div class="col-main">
+				<div class="main-wrap">
+					<div class="am-cf am-padding">
+						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">绑定手机</strong> / <small>Bind&nbsp;Phone</small></div>
+					</div>
+					<hr/>
+					<!--进度条-->
+					<div class="m-progress">
+						<div class="m-progress-list">
+							<span class="step-1 step">
+                                <em class="u-progress-stage-bg"></em>
+                                <i class="u-stage-icon-inner">1<em class="bg"></em></i>
+                                <p class="stage-name">绑定手机</p>
+                            </span>
+							<span class="step-2 step">
+                                <em class="u-progress-stage-bg"></em>
+                                <i class="u-stage-icon-inner">2<em class="bg"></em></i>
+                                <p class="stage-name">完成</p>
+                            </span>
+							<span class="u-progress-placeholder"></span>
+						</div>
+						<div class="u-progress-bar total-steps-2">
+							<div class="u-progress-bar-inner"></div>
+						</div>
+					</div>
+					<form class="am-form am-form-horizontal">
+						<div class="am-form-group bind">
+							<label for="user-phone" class="am-form-label">验证手机</label>
+							<div class="am-form-content" id="phone1">
+								<span id="user-phone">[[${session.user.phone.substring(0,3)}]]*****[[${session.user.phone.substring(7,11)}]]</span>
+							</div>
+						</div>
+						<div class="am-form-group code">
+							<label for="user-code" class="am-form-label">验证码</label>
+							<div class="am-form-content" id="user-code">
+								<input type="tel" id="ver" placeholder="短信验证码">
+							</div>
+							<a class="btn" href="javascript:void(0);" onClick="fasong();" id="sendMobileCode">
+								<div class="am-btn am-btn-danger">验证码</div>
+							</a>
+						</div>
+                       <!-- <div class="col-xs-6 col-sm-12" id="tishi"></div>-->
+                        <div style="color: red"   id="tishi"></div>
+						<div class="am-form-group">
+							<label for="user-new-phone" class="am-form-label">新手机号</label>
+							<div class="am-form-content" >
+								<input type="tel" id="user-new-phone" placeholder="绑定新手机号">
+							</div>
+						</div>
+						<div class="info-btn">
+							<div class="am-btn am-btn-danger"><a style="color: #dedede" type="button"  id="xgbd" >保存修改</a></div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+  <div th:include="aashare::foots"></div>
+</body>
+<script>
+    function divId(elementId){
+        return document.getElementById(elementId);
+    }
+    $("#xgbd").click(function () {
+            $.post(base+"/xgbd",{
+                verify: $("#ver").val(),
+                phone2: $("#user-new-phone").val()
+            },function (data) {
+                if(data==1){
+                    alert("修改成功!")
+					window.location.href='logout'
+                }else if(data==0){
+                    var mobileId=divId("tishi");
+                    mobileId.innerHTML="验证码输入错误!";
+                }
+            });
+    });
+    function fasong() {
+        $.post(base + "/verify",{
+            phone: $("#phone1").val()
+        },function (data) {
+            alert(data)
+        });
+    }
+
+</script>
+</html>

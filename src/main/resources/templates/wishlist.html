@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>愿望清单</title>
+  <!-- include the site stylesheet -->
+    <div th:include="aashare::look"></div>
+
+</head>
+<body>
+  <!-- main container of all the page elements -->  
+  <div id="wrapper">
+    <!-- Page Loader -->
+      <div id="pre-loader" class="loader-container">
+          <div class="loader">
+              <img th:src="@{/asserts/images/svg/rings.svg}" alt="loader">
+          </div>
+      </div>
+    <div class="w1">
+      <!-- mt -header style14 start from here -->
+        <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+      <!-- mt search popup start here -->
+      <div class="mt-search-popup">
+        <div class="mt-holder">
+          <a href="#" class="search-close"><span></span><span></span></a>
+          <div class="mt-frame">
+            <form action="#">
+              <fieldset>
+                <input type="text" placeholder="Search...">
+                <span class="icon-microphone"></span>
+                <button class="icon-magnifier" type="submit"></button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div><!-- mt search popup end here -->
+      <!-- Main of the Page -->
+      <main id="mt-main">
+        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/3.jpg);">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <h1 class="text-center">Wish List</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="paddingbootom-md hidden-xs"></div>
+        <!-- Mt Product Table of the Page -->
+        <div class="mt-product-table wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row border" th:each="wish,status:${product}" th:id="del+${wish.wid}" >
+              <div class="col-xs-12 col-sm-2">
+                <div class="img-holder">
+                  <a th:href="@{'/gem/view'+${wish.pid}}"><img src="http://placehold.it/105x105" th:src="@{'/'+${wish.picture}}" width="105px" height="105px" /></a>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-5">
+                <strong class="product-name">[[${wish.pname}]]</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <strong class="product-name">¥[[${wish.price}]]</strong>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <form action="javascript:void(0)" class="coupon-form">
+                  <fieldset>
+                    <button  th:onclick="|cart(${wish.pid})|" style="margin-top: 15px;">加购</button>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-xs-12 col-sm-1" th:value="${wish.wid}">
+                <a href="javascript:void(0)"  th:onclick="|delPid(this,${wish.pid})|"><i class="fa fa-close"></i></a>
+              </div>
+            </div>
+          </div>
+        </div><!-- Mt Product Table of the Page end -->
+        <div class="paddingbootom-md hidden-xs"></div>
+      </main><!-- Main of the Page end here -->
+        <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+    </div>
+    <span id="back-top" class="fa fa-arrow-up"></span>
+  </div>
+  <!-- include jQuery -->
+
+  <div th:include="aashare::foots"></div>
+
+  <script>
+    function delPid(obj,pid) {
+      //发异步删除数据
+      $.ajax({
+        type: "DELETE",
+        url: base+'/wishss/'+pid,
+        success:function (data) {
+          if (data=="1"){
+            $(obj).parents("tr").remove();
+          }
+        },
+        error:function () {
+        }
+      });
+    }
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- set the encoding of your site -->
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>首页</title>
+	<!-- include the site stylesheet -->
+	<div th:include="aashare::look"></div>
+</head>
+<body>
+	<!-- main container of all the page elements -->
+	<div id="wrapper">
+		<!-- Page Loader -->
+    	<div id="pre-loader" class="loader-container">
+  		</div>
+		<!-- W1 start here -->
+		<div class="w1">
+			<header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+			<!-- mt main slider end here -->
+			<!-- mt main slider start here -->
+			<div class="mt-main-slider">
+				<!-- slider banner-slider start here -->
+				<div class="slider banner-slider">
+					<!-- holder start here -->
+					<div class="holder text-center" style="background-image: url(/furniture/asserts/images/3.jpg);" >
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="text centerize">
+										<div class="txt">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- holder end here -->
+					<!-- holder start here -->
+					<div class="holder text-center" style="background-image: url(/furniture/asserts/images/1.jpg);">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="text right">
+										<div class="txt">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- holder end here -->
+
+					<!-- holder start here -->
+					<div class="holder text-center" style="background-image: url(/furniture/asserts/images/2.jpg);">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="text">
+										<div class="txt">
+										</div> <style type="text/css">
+									</style>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- holder end here -->
+				</div>
+				<!-- slider regular end here -->
+			</div><!-- mt main slider end here -->
+				<!-- mt main start here -->
+			<main id="mt-main">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="banner-frame" >
+								<div class="banner-1 wow fadeInLeft" data-wow-delay="0.4s" th:each="item,status:${product}">
+									<a th:href="@{'/gem/view'+${item.pid}}"><img  alt="image description"  th:src="@{'/'+${item.picture}}" width="385px" height="400px"></a>
+								</div>
+							</div>
+							<div class="mt-producttabs wow fadeInUp" data-wow-delay="0.4s">
+								<!-- producttabs start here -->
+								<ul class="producttabs">
+									<li><a href="#tab1" class="active">精选</a></li>
+									<li><a href="#tab2">最新</a></li>
+									<li><a href="#tab3">畅销</a></li>
+								</ul>
+								<!-- producttabs end here -->
+								<div class="tab-content text-center">
+									<div id="tab1">
+										<!-- tabs slider start here -->
+										<div class="tabs-slider">
+											<!-- slide start here -->
+											<div class="slide" th:each="product,status:${page}">
+												<!-- mt product1 center start here -->
+												<div class="mt-product1 mt-paddingbottom20">
+													<div class="box">
+														<div class="b1">
+															<div class="b2">
+																<a th:href="@{'/gem/view'+${product.pid}}"><img  th:src="@{'/'+${product.picture}}" width="230px" height="230px" alt="image description"></a>
+																<span class="caption">
+																	<span class="new">新品</span>
+																</span>
+																<ul class="mt-stars">
+																	<li><i class="fa fa-star"></i></li>
+																	<li><i class="fa fa-star"></i></li>
+																	<li><i class="fa fa-star"></i></li>
+																	<li><i class="fa fa-star-o"></i></li>
+																</ul>
+																<ul class="links">
+																	<li><a href="javascript:void(0)" th:onclick="|cart(${product.pid})|" type="button"><i class="icon-handbag"></i><span>添加到购物车</span></a></li>
+																	<li><a href="javascript:void(0)" th:onclick="|save(${product.pid})|"><i class="icomoon icon-heart-empty"></i></a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<div class="txt">
+														<strong class="title"><a th:href="@{'/gem/view'+${product.pid}}">[[${product.pname}]]</a></strong>
+														<span class="price"> <span>[[${product.price}]]￥</span></span>
+													</div>
+												</div><!-- mt product1 center end here -->
+												<!-- mt product1 center start here -->
+												<!-- mt product1 center end here -->
+											</div>
+											<!-- slide end here -->
+											<!-- slide start here -->
+										</div>
+										<!-- tabs slider end here -->
+									</div>
+									<div id="tab2">
+										<!-- tabs slider start here -->
+										<div class="tabs-slider">
+											<!-- slide start here -->
+											<div class="slide" th:each="pro,status:${p}">
+												<!-- mt product1 center start here -->
+												<div class="mt-product1 mt-paddingbottom20">
+													<div class="box">
+														<div class="b1">
+															<div class="b2">
+																<a th:href="@{'/gem/view'+${pro.pid}}"><img src="http://placehold.it/215x215" th:src="@{'/'+${pro.picture}}" width="230px" height="230px" alt="image description"></a>
+																<ul class="mt-stars">
+																	<li><i class="fa fa-star"></i></li>
+																	<li><i class="fa fa-star"></i></li>
+																	<li><i class="fa fa-star"></i></li>
+																	<li><i class="fa fa-star-o"></i></li>
+																</ul>
+																<ul class="links">
+																	<li><a href="javascript:void(0)" th:onclick="|cart(${pro.pid})|" type="button"><i class="icon-handbag"></i><span>添加到购物车</span></a></li>
+																	<li><a href="javascript:void(0)" th:onclick="|save(${pro.pid})|"><i class="icomoon icon-heart-empty"></i></a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<div class="txt">
+														<strong class="title"><a th:href="@{'/gem/view'+${pro.pid}}">[[${pro.pname}]]</a></strong>
+														<span class="price"><span>[[${pro.price}]]￥</span></span>
+													</div>
+												</div>
+												<!-- mt product1 center end here -->
+												<!-- mt product1 center start here -->
+											</div>
+											<!-- slide end here -->
+											<!-- slide start here -->
+										</div>
+										<!-- tabs slider end here -->
+									</div>
+									<div id="tab3">
+										<!-- tabs slider start here -->
+										<div class="tabs-slider">
+											<!-- slide start here -->
+											<div class="slide" th:each="prod,status:${pr}">
+												<!-- mt product1 center start here -->
+												<div class="mt-product1 mt-paddingbottom20">
+													<div class="box">
+														<div class="b1">
+															<div class="b2">
+																<a th:href="@{'/gem/view'+${prod.pid}}"><img src="http://placehold.it/215x215" th:src="@{'/'+${prod.picture}}" width="230px" height="230px" alt="image description"></a>
+																<span class="caption">
+																	<span class="new">新品</span>
+																</span>
+																<ul class="mt-stars">
+																	<li th:if="${prod.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+																	<li th:if="${prod.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+																	<li th:if="${prod.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+																	<li th:if="${prod.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+																	<li th:if="${prod.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+																	<li th:if="${prod.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+																	<li th:if="${prod.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+																	<li th:if="${prod.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+																	<li th:if="${prod.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+																	<li th:if="${prod.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+																</ul>
+																<ul class="links">
+																	<li><a href="javascript:void(0)" th:onclick="|cart(${prod.pid})|"><i class="icon-handbag"></i><span>添加到购物车</span></a></li>
+																	<li><a href="javascript:void(0)" th:onclick="|save(${prod.pid})|"><i class="icomoon icon-heart-empty"></i></a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<div class="txt">
+														<strong class="title"><a th:href="@{'/gem/view'+${prod.pid}}">[[${prod.pname}]]</a></strong>
+														<span class="price"> <span>[[${prod.price}]]￥</span></span>
+													</div>
+												</div><!-- mt product1 center end here -->
+												<!-- mt product1 center start here -->
+												<!-- mt product1 center end here -->
+											</div>
+											<!-- slide end here -->
+											<!-- slide start here -->
+										</div>
+										<!-- tabs slider end here -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- mt bestseller start here -->
+				<div class="mt-bestseller bg-grey text-center wow fadeInUp" data-wow-delay="0.4s">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 mt-heading text-uppercase">
+								<h2 class="heading">畅销品</h2>
+								<p>销售情况 </p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="bestseller-slider">
+									<div class="slide" th:each="product,status:${hot}">
+										<!-- mt product1 center start here -->
+										<div class="mt-product1 large" >
+											<div class="box">
+												<div class="b1">
+													<div class="b2">
+														<a th:href="@{'/gem/view'+${product.pid}}"><img src="http://placehold.it/275x285" th:src="@{'/'+${product.picture}}" width="275px" height="285px" alt="image description"></a>
+														<span class="caption">
+															<span class="best-price">最优价格</span>
+														</span>
+														<ul class="links add">
+															<li><a href="javascript:void(0)" th:onclick="|cart(${product.pid})|"><i class="icon-handbag"></i></a></li>
+															<li><a href="javascript:void(0)" th:onclick="|save(${product.pid})|"><i class="icomoon icon-heart-empty"></i></a></li>
+														</ul>
+														<ul class="mt-stars">
+															<li th:if="${product.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+															<li th:if="${product.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+															<li th:if="${product.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+															<li th:if="${product.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+															<li th:if="${product.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+															<li th:if="${product.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+															<li th:if="${product.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+															<li th:if="${product.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+															<li th:if="${product.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+															<li th:if="${product.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="txt">
+												<strong class="title"><a th:href="@{'/gem/view'+${product.pid}}">[[${product.pname}]]</a></strong>
+												<span class="price"><span>[[${product.price}]]￥</span></span>
+											</div>
+										</div><!-- mt product1 center end here -->
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- mt bestseller start here -->
+				<div class="mt-smallproducts wow fadeInUp" data-wow-delay="0.4s">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm">
+								<h3 class="heading">热销商品</h3>
+								<!-- mt product4 start here -->
+								<div class="mt-product4 mt-paddingbottom20" th:each="item,status:${sale}">
+									<div class="img">
+										<a  th:href="@{'/gem/view'+${item.pid}}"><img src="http://placehold.it/80x80" th:src="@{'/'+${item.picture}}" width="100px" height="100px"></a>
+									</div>
+									<div class="text">
+										<div class="frame">
+											<strong><a  th:href="@{'/gem/view'+${item.pid}}">[[${item.pname}]]</a></strong>
+											<ul class="mt-stars">
+												<li th:if="${item.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											</ul>
+										</div>
+										<del class="off">￥75,00</del>
+										<span class="price">[[${item.price}]]￥</span>
+									</div>
+								</div><!-- mt product4 end here -->
+								<!-- mt product4 start here -->
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm">
+								<h3 class="heading">特色商品</h3>
+								<!-- mt product4 start here -->
+								<div class="mt-product4 mt-paddingbottom20" th:each="item,status:${special}">
+									<div class="img">
+										<a  th:href="@{'/gem/view'+${item.pid}}"><img  src="http://placehold.it/80x80" th:src="@{'/'+${item.picture}}" width="100px" height="100px"></a>
+									</div>
+									<div class="text">
+										<div class="frame">
+											<strong><a  th:href="@{'/gem/view'+${item.pid}}">[[${item.pname}]]</a></strong>
+											<ul class="mt-stars">
+												<li th:if="${item.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											</ul>
+										</div>
+										<del class="off">75,00￥</del>
+										<span class="price">[[${item.price}]]￥</span>
+									</div>
+								</div><!-- mt product4 end here -->
+								<!-- mt product4 start here -->
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomxs">
+								<h3 class="heading">顶级商品</h3>
+								<!-- mt product4 start here -->
+								<div class="mt-product4 mt-paddingbottom20" th:each="item,status:${top}">
+									<div class="img">
+										<a th:href="@{'/gem/view'+${item.pid}}"><img  src="http://placehold.it/80x80" th:src="@{'/'+${item.picture}}" width="100px" height="100px"></a>
+									</div>
+									<div class="text">
+										<div class="frame">
+											<strong><a  th:href="@{'/gem/view'+${item.pid}}">[[${item.pname}]]</a></strong>
+											<ul class="mt-stars">
+												<li th:if="${item.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											</ul>
+										</div>
+										<del class="off">75,00￥</del>
+										<span class="price">[[${item.price}]]￥</span>
+									</div>
+								</div><!-- mt product4 end here -->
+								<!-- mt product4 start here -->
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-3">
+								<h3 class="heading">店长推荐</h3>
+								<!-- mt product4 start here -->
+								<div class="mt-product4 mt-paddingbottom20" th:each="item,status:${product}">
+									<div class="img">
+										<a  th:href="@{'/gem/view'+${item.pid}}"><img src="http://placehold.it/80x80" th:src="@{'/'+${item.picture}}" width="100px" height="100px"></a>
+									</div>
+									<div class="text">
+										<div class="frame">
+											<strong><a th:href="@{'/gem/view'+${item.pid}}">[[${item.pname}]]</a></strong>
+											<ul class="mt-stars">
+												<li th:if="${item.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+												<li th:if="${item.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+												<li th:if="${item.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											</ul>
+										</div>
+										<del class="off">￥75,00</del>
+										<span class="price">[[${item.price}]]￥</span>
+									</div>
+								</div><!-- mt product4 end here -->
+								<!-- mt product4 start here -->
+							</div>
+						</div>
+					</div>
+				</div><!-- mt bestseller end here -->
+			</main><!-- mt main end here -->
+			<footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+		</div>
+		<!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+	<!--<script  th:src="@{/asserts/js/my.js}" ></script>-->
+
+
+
+
+	<script  th:src="@{/asserts/js/jquery.js}" ></script>
+	<!-- include jQuery -->
+	<script  th:src="@{/asserts/js/plugins.js}"></script>
+	<!-- include jQuery -->
+	<script  th:src="@{/asserts/js/jquery.main.js}" ></script>
+	<script  th:src="@{/asserts/js/my.js}" ></script>
+	<script>
+		$(function () {
+			$.get(base+"/gem/role"
+			,function (data) {
+			})
+		})
+
+	</script>
+	<!-- include jQuery -->
+</body>
+</html>

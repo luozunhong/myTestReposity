@@ -1,0 +1,129 @@
+<html lass="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- set the encoding of your site -->
+    <meta charset="utf-8">
+    <!-- set the viewport width and initial-scale on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地址管理</title>
+    <div th:include="aashare::look"></div>
+</head>
+<form  th:action="@{/edit/add}" method="post" class="am-form am-form-horizontal" th:each="add:${isdefault}">
+
+    <input id="shipId" type="hidden"  name="shipId" th:value="${add.shipId}">
+    <div class="am-form-group">
+        <label for="user-name" class="am-form-label">收货人</label>
+        <div class="am-form-content">
+            <input type="text" name="consignee" id="user-name" th:value="${add.consignee}" placeholder="收货人">
+
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label for="user-phone" class="am-form-label">手机号码</label>
+        <div class="am-form-content">
+            <input id="user-phone" th:value="${add.phone}" name="phone" placeholder="手机号必填" type="text">
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label  class="am-form-label">所在地</label>
+        <div class="am-form-content address">
+            <select name="province"  th:value="${add.province}" id="province">
+                <option>[[${add.province}]]</option>
+            </select>
+            <select name="city"  id="city">
+                <option>[[${add.city}]]</option>
+            </select>
+            <select name="area" id="area">
+                <option>[[${add.area}]]</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label for="user-intro" class="am-form-label">详细地址</label>
+        <div class="am-form-content">
+            <textarea  class="" rows="3" name="address" id="user-intro" placeholder="输入详细地址">[[${add.address}]]</textarea>
+            <small>100字以内写出你的详细地址...</small>
+        </div>
+    </div>
+    <br>
+
+    <div class="am-form-group">
+        <div class="am-u-sm-9 am-u-sm-push-3">
+            <a type="button"  id="addr" class="am-btn am-btn-danger">修改</a>
+            <a href="javascript: void(0)" type="cancel" class="am-close am-btn am-btn-danger" data-am-modal-close>取消</a>
+        </div>
+    </div>
+    <!--<input class="am-btn am-btn-danger" type="submit" value="提交">-->
+</form>
+
+<div th:include="aashare::foots"></div>
+
+<script type="text/javascript">
+
+        $("#addr").click(function () {
+            $.post(base + "/edit/add",{
+                shipId: $("#shipId").val(),
+                consignee: $("#user-name").val(),
+                phone: $("#user-phone").val(),
+                province: $("#province").val(),
+                city: $("#city").val(),
+                area: $("#area").val(),
+                address: $("#user-intro").val()
+            },function (data) {
+
+                alert(data)
+                $('#empData').load(base+"/address");
+            });
+        });
+
+
+</script>
+
+
+
+<script>
+    $(function () {
+
+        $.ajax({
+            url: base + "/ssxjl/getProvince",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (i, obj) {
+                    $("#province").append("<option value='" + obj.code + "'>" + obj.name + "</option>");
+                });
+            }
+        });
+
+
+
+        $("#province").change(function(){
+            $("#city").empty().html("<option>---请选择城市---</option>");
+            $("#area").empty().html("<option>---请选择区域---</option>");
+            $.ajax({
+                url: base + "/ssxjl/getCity?code=" + $("#province").val(),
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, obj) {
+                        $("#city").append("<option value='" + obj.code + "'>" + obj.name + "</option>");
+                    });
+                }
+            });
+        });
+
+        $("#city").change(function(){
+            $("#area").empty().html("<option>---请选择区域---</option>");
+            $.ajax({
+                url: base+ "/ssxjl/getArea?code=" + $("#city").val(),
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, obj) {
+                        $("#area").append("<option value='" + obj.code + "'>" + obj.name + "</option>");
+                    });
+                }
+            });
+        });
+    });
+</script>
+</html>

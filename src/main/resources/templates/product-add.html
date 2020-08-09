@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+    <link rel="stylesheet" th:href="@{/asserts/css/font.css}">
+    <link rel="stylesheet" th:href="@{/asserts/css/xadmin.css}">
+    <script th:src="@{/asserts/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/xadmin.js}"></script>
+    <link rel="stylesheet" th:href="@{/asserts/css/index.css}">
+    <script th:src="@{/asserts/js/vue.js}"></script>
+    <script src="@{/asserts/js/index.js}"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/jquery.js}"></script>
+    <link rel="stylesheet" href="//unpkg.com/element-ui@2.4.9/lib/theme-chalk/index.css">
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.4.9/lib/index.js"></script>
+
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" enctype="multipart/form-data">
+            <div class="layui-form-item">
+                <label for="pname" class="layui-form-label">
+                    <span class="x-red">*</span>商品名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="pname" name="pname" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label for="price" class="layui-form-label">
+                    <span class="x-red">*</span>价格
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="price" name="price" required="" lay-verify="price"
+                           autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label for="originalPrice" class="layui-form-label">
+                    <span class="x-red">*</span>原价
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="originalPrice" name="originalPrice" required="" lay-verify="originalPrice"
+                           autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                <label for="introduction" class="layui-form-label">
+                    <span class="x-red">*</span>简介
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="introduction" name="introduction" required="" lay-verify="introduction"
+                           autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="itemCate" class="layui-form-label">
+            <span class="x-red">*</span>商品类型</label>
+        <div class="layui-input-inline">
+            <select id="itemCate" name="cateId" class="valid">
+                <option th:each="cate,status:${#dic.getDicList('product_type')}"
+                        th:value="${status.count}">[[${cate.label}]]
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="itemCate1" class="layui-form-label">
+            <span class="x-red">*</span>风格
+        </label>
+        <div class="layui-input-inline">
+            <select id="itemCate1" name="cateId" class="valid">
+                <option th:each="cate,status:${#dic.getDicLists('product_type')}"
+                        th:value="${status.count}">[[${cate.label}]]
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="inventory" class="layui-form-label">
+            <span class="x-red">*</span>库存
+        </label>
+        <div class="layui-input-inline">
+            <input type="text" id="inventory" name="type" required="" lay-verify="type"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="piccture" class="layui-form-label">
+            <span class="x-red">*</span>图片
+        </label>
+        <div id="app">
+            <el-upload action="/furniture/head" list-type="picture-card"
+                       :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+                <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt>
+            </el-dialog>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+         <label class="layui-form-label"></label>
+        </label>
+        <button type="button" id="adds"  class="layui-btn" lay-filter="add" lay-submit="" style="margin-top: 20px;">
+            增加
+        </button>
+    </div>
+
+    </form>
+</div>
+</div>
+<script>
+    /*            layui.use(['form', 'layer'],
+                function() {
+                    $ = layui.jquery;
+                    var form = layui.form,
+                    layer = layui.layer;
+                    //监听提交
+                    form.on('submit(add)',
+                    function(data) {
+                        console.log(data);
+                        //发异步，把数据提交给php
+                        layer.alert("增加成功", {
+                            icon: 6
+                        },
+                        function() {
+                            //关闭当前frame
+                            xadmin.close();
+
+                            // 可以对父窗口进行刷新
+                            xadmin.father_reload();
+                        });
+                        return false;
+                    });
+
+                });*/
+    /*            //监听提交
+                form.on('submit(add)', function (data) {
+                    //添加操作
+                    $.ajax({
+                        type: "POST",
+                        url: 'product-add',
+                        data: data.field,
+                        async:ture,//是否异步处理
+                        success: function (data) {
+                            alert(data);
+                        },
+                        error: function () {
+                            //请求出错处理
+                        }
+                    });
+
+                    layer.alert("增加成功", {
+                            icon: 6
+                        },
+                        function () {
+                            //关闭当前frame
+                            xadmin.close();
+                            // 可以对父窗口进行刷新
+                            xadmin.father_reload();
+                        });
+                    return false;
+                });*/
+    $("#adds").click(function () {
+        $.post("/furniture/product-add",{
+            pname:$("#pname").val(),
+            price:$("#price").val(),
+            originalPrice:$("#originalPrice").val(),
+            introduction:$("#introduction").val(),
+            style: $("#itemCate1").val(),
+            type:$("#itemCate").val(),
+            inventory:$("#inventory").val(),
+            picture:$("#picture").val(),
+        },function (data) {
+            alert(data);
+
+        });
+
+    });
+
+    var Main = {
+        data() {
+            return {
+                dialogImageUrl: '',
+                dialogVisible: false
+            };
+        },
+        methods: {
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            }
+        }
+    };
+    var Ctor = Vue.extend(Main);
+    new Ctor().$mount('#app');
+
+
+</script>
+
+</body>
+
+</html>

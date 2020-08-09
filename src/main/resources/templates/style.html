@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>风格设计</title>
+  <!-- include the site stylesheet -->
+    <div th:include="aashare::look"></div>
+</head>
+<body>
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <!-- Page Loader -->
+      <div id="pre-loader" class="loader-container">
+          <div class="loader">
+              <img th:src="@{/asserts/images/svg/rings.svg}" alt="loader">
+          </div>
+      </div>
+      <!-- W1 start here -->
+ <div class="w1">
+     <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+      <!-- Main of the Page -->
+      <main id="mt-main">
+        <!-- Mt Contact Banner of the Page -->
+        <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/1.jpg); height: 205px;width: 1920px;">
+        </section>
+        <div class="mt-blog-detail style4">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 header wow fadeInUp" data-wow-delay="0.4s">
+                <span class="category"><a href="#"><i class="fa fa-th"></i></a></span>
+                <ul class="list-unstyled align-right">
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 header-holder">
+                <h3>家具风格设计灵感</h3>
+                  <h2>你想从哪里开始新的一天?</h2>
+                  <h3>欢迎来到风格展示区。这里的家具风格组合种类繁多，大小各异，价格都很实惠。
+                      <br>
+                      我们已经为你搭配好产品，让你在家也可轻松再现在此看到的布置。四处看看，寻找你梦想的家吧!</h3>
+              </div>
+              <div class="col-xs-12">
+                <div class="mt-iso" id="blog-isotops">
+                <article class="post-blog wow fadeInLeft" data-wow-delay="0.4s" th:each="s,status:${style}">
+                  <div class="img-holder" >
+                   <a th:href="@{'/gem/view'+${s.pid}}"><img th:src="@{'/'+${s.picture}}" width="375px" height="295px"></a>
+                  </di>
+                  </div>
+                </article>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mt Blog Detail of the Page end -->
+      </main>
+      <!-- footer of the Page -->
+     <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+		</div><!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+  <div th:include="aashare::foots"></div>
+
+</body>
+</html>

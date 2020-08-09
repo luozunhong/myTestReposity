@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <!-- include the site stylesheet -->
+    <div th:include="aashare::look"></div>
+
+</head>
+<body>
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <!-- Page Loader -->
+      <div id="pre-loader" class="loader-container">
+          <div class="loader">
+              <img th:src="@{asserts/images/svg/rings.svg}" alt="loader">
+          </div>
+      </div>
+    <div class="w1">
+      <main id="mt-main" class="coming-soon" style="background-image: url(/furniture/asserts/images/s.jpg);">
+        <div class="countdown-center full">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 col-sm-push-4">
+                <div class="holder" style="margin: 0;background-color: blanchedalmond;">
+                  <div class="mt-side-widget">
+                    <header>
+                      <div class="mt-logo"><a href="#"><img th:src="@{/asserts/images/mt-logo2.png}" alt="schon"></a></div>
+                      <p>欢迎回来!请登录你的账户</p>
+                    </header>
+                    <form method="post" th:action="@{/gem/login}">
+                      <fieldset>
+                        <input type="text" placeholder="手机号" class="input" name="username">
+                        <input type="password" placeholder="密码" class="input" name="password">
+                       <!-- <div>验证码：
+                          <input type = "text" id = "input"/>
+                          <input type="button" id="code" onclick="createCode()" style="width:60px" title='点击更换验证码' />
+                          <input type = "button" value = "验证" onclick = "validate()"/>
+                        </div>-->
+                        <div class="box">
+                          <span class="left"><input class="checkbox" type="checkbox" id="check1" name="remember-me"><label for="check1">自动登录</label></span>
+                          <a th:href="@{/gem/register}" class="help">注册?&nbsp&nbsp</a>
+                        </div>
+                        <div>
+                          <button  type="submit"   class="btn-type1">登录</button>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="canvas" id="particles-js"></div>
+      </main>
+    </div>
+  </div>
+  <!-- include jQuery -->
+  <div th:include="aashare::foots"></div>
+</body>
+</html>

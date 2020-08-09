@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>订单结算</title>
+  <!-- include the site stylesheet -->
+  <div th:include="aashare::look"></div>
+  <div th:include="aashare::foots"></div>
+
+</head>
+<body>
+<!-- main container of all the page elements -->
+<div id="wrapper">
+  <!-- Page Loader -->
+  <div id="pre-loader" class="loader-container">
+  </div>
+  <div class="w1">
+    <header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+    <!-- Main of the Page -->
+
+    <main id="mt-main">
+      <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/furniture/asserts/images/1.jpg);">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1 class="text-center"></h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Mt Process Section of the Page -->
+      <div class="mt-process-sec wow fadeInUp" data-wow-delay="0.4s">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- Process List of the Page -->
+              <ul class="list-unstyled process-list">
+                <li class="active">
+                  <span class="counter">01</span>
+                  <strong class="title">购物车</strong>
+                </li>
+                <li class="active">
+                  <span class="counter">02</span>
+                  <strong class="title">结账</strong>
+                </li>
+                <li>
+                  <span class="counter">03</span>
+                  <strong class="title">支付完成</strong>
+                </li>
+              </ul>
+              <!-- Process List of the Page end -->
+            </div>
+          </div>
+        </div>
+      </div><!-- Mt Process Section of the Page end -->
+      <!-- Mt Detail Section of the Page -->
+      <section class="mt-detail-sec toppadding-zero wow fadeInUp" data-wow-delay="0.4s">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <h2>收货地址</h2>
+              <!-- Bill Detail of the Page -->
+              <form action="#" class="bill-detail">
+                <fieldset>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option value="0">中国</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="col">
+                      <input  type="text" class="form-control" th:value="${isdefault.getConsignee()}">
+                    </div>
+                    <div class="col">
+                      <input  type="tel" class="form-control" th:value="${isdefault.getPhone()}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-4">
+                      <select class="form-control" name="province" id="province">
+                        <option value="0">[[${isdefault.getProvince()}]]</option>
+                        <option  value="1"></option>
+                      </select>
+                    </div>
+                    <div class="col-sm-4">
+                      <select class="form-control"  name="city"  id="city">
+                        <option value="0">[[${isdefault.getCity()}]]</option>
+                        <option id="ci" value="1"></option>
+                      </select>
+                    </div>
+                    <div class="col-sm-4">
+                      <select class="form-control"  name="area" id="area">
+                        <option value="0">[[${isdefault.getArea()}]]</option>
+                        <option id="ar" value="1"></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <textarea  class="form-control" >[[${isdefault.getAddress()}]]</textarea>
+                  </div>
+                  <div class="form-group">
+                    <textarea  class="form-control" >留言</textarea>
+                  </div>
+                  <div class="form-group">
+                    <!--                    <input type="checkbox"> 更换收获地址?-->
+                  </div>
+
+                </fieldset>
+              </form>
+              <!-- Bill Detail of the Page end -->
+            </div>
+            <form th:action="@{/pay}" method=post>
+              <div class="col-xs-12 col-sm-6">
+                <div class="holder">
+                  <h2>你的订单</h2>
+                  <ul class="list-unstyled block">
+
+                    <li th:each="cart,status:${carts}">
+                      <input  name="WIDsubject" type="hidden" th:value="${cart.pname}"/>
+                      <input  name="WIDtotal_amount" type="hidden" th:value="${num}"/>
+                      <strong >商品名:[[${cart.pname}]]</strong><br>
+                      <script>
+                        $(function () {
+                          var id=[[${cart.cid}]]
+                          GetDateNow(id);
+                        });
+                      </script>
+                      <strong>订单编号:<input th:id="${cart.cid}"  name="WIDout_trade_no" style="border:none" readonly="readonly"/></strong><br>
+                      <strong>单价:[[${cart.price}]]</strong><br>
+                      <strong th:size="50">数量:[[${cart.count}]]</strong><br>
+                      <strong>小计:[[${cart.total}]]</strong><br>
+                    </li>
+                  </ul>
+                  <h2>总计：<strong th:value="${num}">[[${num}]]￥</strong></h2>
+                 <!--总计：<strong th:value="${num}">[[${num}]]</strong>-->
+                  <h2>支付方式</h2>
+                  <!-- Panel Group of the Page -->
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <!-- Panel Panel Default of the Page -->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            支付宝结账
+                            <span class="check"><i class="fa fa-check"></i></span>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                          <p>把您的钱直接存入我们的银行账户。请使用您的订单id作为付款参考。在我们账户中的资金结清之前，您的订单不会发货</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Panel Panel Default of the Page end -->
+
+                    <!-- Panel Panel Default of the Page end -->
+                  </div>
+                  <!-- Panel Group of the Page end -->
+                </div>
+                <div class="block-holder">
+                  <!--                  <input type="checkbox"  checked> 我同意条款 <a href="#">terms &amp; conditions</a>-->
+                </div>
+                <input type="submit" class="process-btn" th:value="确认支付">
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </section>
+      <!-- Mt Detail Section of the Page end -->
+    </main><!-- Main of the Page end here -->
+    <!--      </form>-->
+    <!-- footer of the Page -->
+    <footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer>
+    <!-- footer of the Page end -->
+  </div>
+  <span id="back-top" class="fa fa-arrow-up"></span>
+</div>
+<!-- include jQuery -->
+
+<script  th:src="@{/asserts/js/my.js}" ></script>
+<script>
+  $(function () {
+
+    $.ajax({
+      url: base + "/ssxjl/getProvince",
+      dataType: "json",
+      success: function (data) {
+        $.each(data, function (i, obj) {
+          $("#province").append("<option value='" + obj.code + "'>" + obj.name + "</option>");
+        });
+      }
+    });
+
+
+    $("#province").change(function(){
+      $("#ci").empty().html("<option>---请选择城市---</option>");
+      $("#ar").empty().html("<option>---请选择区域---</option>");
+      $.ajax({
+        url: base + "/ssxjl/getCity?code=" + $("#province").val(),
+        dataType: "json",
+        success: function (data) {
+          $.each(data, function (i, obj) {
+            $("#city").append("<option value='" + obj.code + "'>" + obj.name + "</option>");
+          });
+        }
+      });
+    });
+
+    $("#city").change(function(){
+      $("#ar").empty().html("<option>---请选择区域---</option>");
+      $.ajax({
+        url: base+ "/ssxjl/getArea?code=" + $("#city").val(),
+        dataType: "json",
+        success: function (data) {
+          $.each(data, function (i, obj) {
+            $("#area").append("<option value='" + obj.code + "'>" + obj.name + "</option>");
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<script language="javascript">
+  var tabs = document.getElementsByName('tab');
+  var contents = document.getElementsByName('divcontent');
+  var s=0;
+
+  (function changeTab(tab) {
+    for (var i = 0, len = tabs.length; i < len; i++) {
+      tabs[i].onmouseover = showTab;
+    }
+  })();
+
+  function showTab() {
+    for (var i = 0, len = tabs.length; i < len; i++) {
+      if (tabs[i] === this) {
+        tabs[i].className = 'selected';
+        contents[i].className = 'show';
+      } else {
+        tabs[i].className = '';
+        contents[i].className = 'tab-content';
+      }
+    }
+  }
+
+
+  function GetDateNow(id) {
+    var vNow = new Date();
+    var sNow = "";
+    sNow += String(vNow.getFullYear());
+    sNow += String(vNow.getMonth() + 1);
+    sNow += String(vNow.getDate());
+    sNow += String(vNow.getHours());
+    sNow += String(vNow.getMinutes());
+    sNow += String(vNow.getSeconds());
+    sNow += String(vNow.getMilliseconds());
+    document.getElementById(id).value = sNow-s;
+    s=s+11
+  }
+
+
+  var pic = $("#WIDsubject").val();
+
+</script>
+</body>
+</html>

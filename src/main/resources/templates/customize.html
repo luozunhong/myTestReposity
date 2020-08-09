@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- set the encoding of your site -->
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>定制</title>
+	<div th:include="aashare::look"></div>
+</head>
+	<body>
+		<!-- main container of all the page elements -->
+		<div id="wrapper">
+			<!-- Page Loader -->
+			<div id="pre-loader" class="loader-container">
+				<div class="loader">
+					<img th:src="@{asserts/images/svg/rings.svg}" alt="loader">
+				</div>
+			</div>
+			<!-- W1 start here -->
+	<div class="w1">
+			<!-- mt header style4 start here -->
+		<header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+				<main id="mt-main">
+				<!-- Mt Contact Banner of the Page -->
+				<section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(asserts/images/1.jpg); background-size: 1920px 205px;">
+					<div class="container">
+						<div class="row">
+							
+						</div>
+					</div>
+				</section>
+				<!-- Mt Contact Banner of the Page end -->
+				<!-- Mt Blog Detail of the Page -->
+				<div class="mt-blog-detail fullwidth">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 header wow fadeInUp" data-wow-delay="0.4s">
+								<!-- Breadcrumbs of the Page -->
+								<nav class="breadcrumbs">
+									<ul class="list-unstyled">
+										<li><a href="#">首页 <i class="fa fa-angle-right"></i></a></li>
+										<li><a href="#">设计</a></li>
+									</ul>
+								</nav>
+								<!-- Breadcrumbs of the Page end -->
+								<span class="category"><a href="#"><i class="fa fa-th"></i></a></span>
+								<ul class="list-unstyled align-right">
+									<li>
+										搜索 <a href="#"><i class="fa fa-search"></i></a>
+									</li>
+									<li>
+										类型 <a href="#"><i class="fa fa-bars"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
+								<!-- Blog Post of the Page -->
+								<article class="blog-post detail">
+									<div class="img-holder">
+											<img th:src="@{/furniture/asserts/images/1.jpg}" width="1200px" height="350px"/>
+									
+									</div>
+									<time class="time" datetime="2016-02-03 20:00"><strong>25</strong>November</time>
+									<div class="blog-txt">
+										<h2><a href="blog-post-detail-full-width.html">客厅设计</a></h2>
+										<ul class="list-unstyled blog-nav">
+											<li> <a ><i class="fa fa-clock-o"></i>20 November 2019</a></li>
+											<li> <a ><i class="fa fa-list"></i>Design</a></li>
+											<li> <a ><i class="fa fa-comment"></i>2 Comments</a></li>
+										</ul>
+										<p> 客厅，在专业层面来说，是指专门接待客人的地方。由于中国国情的限制，往往在建筑上把客厅与起居室的作用混为一体。也就是说，中国大部分人的客厅，是兼有接待客人和生活日常起居作用的。当然，部分经济富裕的家庭也会有专门的客厅和专门的起居室。客厅，往往最显示一个人的个性和品位。在家居装潢中，人们越来越重视对客厅的打扮.</p>
+										<a href="blog-post-detail-full-width.html" class="btn-more">阅读更多</a>
+									</div>
+								</article>
+								<!-- Blog Post of the Page end -->
+								<!-- Blog Post of the Page -->
+								<article class="blog-post detail">
+									<div class="img-holder">
+										<img th:src="@{asserts/images/i.jpg}" src="images/i.jpg" width="1200px" height="350px" />
+									</div>
+									<time class="time" datetime="2016-02-03 20:00"><strong>25</strong>November</time>
+									<div class="blog-txt">
+										<h2><a href="blog-post-detail-full-width.1.html">起居室</a></h2>
+										<ul class="list-unstyled blog-nav">
+											<li> <a ><i class="fa fa-clock-o"></i>20 November 2015</a></li>
+											<li> <a ><i class="fa fa-list"></i>Design</a></li>
+											<li> <a ><i class="fa fa-comment"></i>2 Comments</a></li>
+										</ul>
+										<p>在卧室的设计上，设计师要追求的是功能与形式的完美统一、优雅独特、简洁明快的设计风格。在卧室设计的审美上，设计师要追求时尚而不浮躁，庄重典雅而不乏轻松浪漫的感觉。因此，设计师在卧室的设计上，会更多地运用丰富的表现手法，使卧室看似简单，实则韵味无穷。</p>
+										<a href="blog-post-detail-full-width.html" class="btn-more">阅读更多</a>
+									</div>
+								</article>
+								<!-- Blog Post of the Page end -->
+								<!-- Blog Post of the Page -->
+								<article class="blog-post detail">
+									<div class="img-holder">
+										<img th:src="@{asserts/images/j.jpg}" src="images/j.jpg" width="1200px" height="350px" />
+									</div>
+									<time class="time" datetime="2016-02-03 20:00"><strong>25</strong>November</time>
+									<div class="blog-txt">
+										<h2><a href="blog-post-detail-full-width.html">工业设计优秀奖</a></h2>
+										<ul class="list-unstyled blog-nav">
+											<li> <a ><i class="fa fa-clock-o"></i>20 November 2019</a></li>
+											<li> <a ><i class="fa fa-list"></i>Design</a></li>
+											<li> <a ><i class="fa fa-comment"></i>2 Comments</a></li>
+										</ul>
+										<p>装馨家有限公司是一家大型设计公司，致力于产品造型设计、产品结构设计、产品战略策划、产品生命周期管理，以国际化的设计理念及优秀的设计思想享誉业界，成功帮助客户创造最佳商业价值，是中国最具实力的专业设计公司。装馨家凭借在设计领域的非凡创造力，赢得到众多企业的信任。坚持创新是客户价值最大化的经营之道，“创造不凡的设计”是不倦追求的目标，我们拒绝流水线作品！我们追求有真正生命力、传承中华文化的设计精品，提升中国品牌在国际市场上的影响力。</p>
+										<a href="blog-post-detail-full-width.html" class="btn-more">阅读更多</a>
+									</div>
+								</article>
+							</div>
+						</div>
+					</div>
+				</div>
+				        <section class="mt-team-sec">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <h3>团队概况</h3>
+                <div class="holder">
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{asserts/images/l.jpg}" src="asserts/images/l.jpeg" width="280px" height="290px"; alt="CLARA WOODEN">
+                      </a>
+                    </div>
+                    <div class="mt-txt">
+                      <h4><a href="#">朱帅杰</a></h4>
+                      <span class="sub-title">设计师</span>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{asserts/images/k.jpg}" src="asserts/images/k.jpg" width="280px" height="290px"; alt="JOHN WICK">
+                      </a>
+                    </div>
+                    <div class="mt-txt">
+                      <h4><a href="#">闵浩</a></h4>
+                      <span class="sub-title">创始人</span>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInRight" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{asserts/images/n.jpg}" src="asserts/images/n.jpg" width="280px" height="290px"; alt="HARRY KANE">
+                      </a>
+                    </div>
+                    <div class="mt-txt">
+                      <h4><a href="#">王奕瑶</a></h4>
+                      <span class="sub-title">设计师</span>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                  <!-- col of the Page -->
+                  <div class="col wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="img-holder">
+                      <a href="#">
+                        <img th:src="@{asserts/images/m.jpg}" src="asserts/images/m.jpg" width="280px" height="290px"; alt="CLARA WOODEN">
+                      </a>
+                    </div>
+					<div class="mt-txt">
+                      <h4><a href="#">罗遵红</a></h4>
+                      <span class="sub-title">设计师</span>
+                    </div>
+                  </div>
+                  <!-- col of the Page end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+				<!-- Mt Blog Detail of the Page end -->
+				</main>
+				<!-- footer of the Page -->
+		<footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer><!-- footer of the Page end -->
+		</div><!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+	<!-- include jQuery -->
+		<div th:include="aashare::foots"></div>
+</body>
+</html>

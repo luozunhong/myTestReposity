@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- set the encoding of your site -->
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>商品详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/bootstrap.css}" >
+
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/animate.css}" >
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/icon-fonts.css}">
+	<!-- include the site stylesheet -->
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/main.css}">
+
+	<link  rel=stylesheet type=text/css th:href="@{/asserts/css/responsive.css}">
+	<script th:inline="javascript">
+		var base = [[${#request.getContextPath()}]];
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+    <div id="pre-loader" class="loader-container">
+    </div>
+		<!-- W1 start here -->
+		<div class="w1">
+			<!-- mt header style4 start here -->
+			<header  class="style14" id="mt-header" th:include="aashare::tou"></header>
+			<div class="holder text-center" style="background-image: url(/furniture/asserts/images/1.jpg); height: 300px;width: 1920px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="text">
+								<div class="txt">
+								</div> <style type="text/css">
+							</style>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- mt side menu start here -->
+			<div class="mt-search-popup">
+				<div class="mt-holder">
+					<a href="#" class="search-close"><span></span><span></span></a>
+					<div class="mt-frame">
+						<form action="#">
+							<fieldset>
+								<input type="text" placeholder="Search...">
+								<span class="icon-microphone"></span>
+								<button class="icon-magnifier" type="submit"></button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div><!-- mt search popup end here -->
+			<!-- mt main start here -->
+			<main id="mt-main">
+				<!-- Mt Product Detial of the Page -->
+				<section class="mt-product-detial wow fadeInUp" data-wow-delay="0.4s">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- Slider of the Page -->
+								<div class="slider" >
+									<!-- Comment List of the Page -->
+									<ul class="list-unstyled comment-list">
+									</ul>
+									<!-- Comment List of the Page end -->
+									<!-- Product Slider of the Page -->
+									<div class="product-slider" >
+										<div class="slide" th:each="product,status:${picture}">
+											<img src="http://placehold.it/610x490" th:src="@{'/'+${product.picname}}" width="500px" height="490px" >
+										</div>
+									</div>
+									<!-- Product Slider of the Page end -->
+									<!-- Pagg Slider of the Page -->
+									<ul class="list-unstyled slick-slider pagg-slider" >
+										<div class="img" th:each="picture,status:${picture}"><img src="http://placehold.it/105x105" th:src="@{'/'+${picture.picname}}" width="150px" height="150px"></div></li>
+									</ul>
+									<!-- Pagg Slider of the Page end -->
+								</div>
+								<!-- Slider of the Page end -->
+								<!-- Detail Holder of the Page -->
+								<div class="detial-holder"  >
+									<!-- Breadcrumbs of the Page -->
+									<ul class="list-unstyled breadcrumbs">
+										<li><a href="#">[[${product.pname}]]<i class="fa fa-angle-right"></i></a></li>
+										<li>商品</li>
+									</ul>
+									<!-- Breadcrumbs of the Page end -->
+									<div>
+										<h2></h2>
+									</div>
+									<!-- Rank Rating of the Page -->
+									<div class="rank-rating">
+										<ul class="list-unstyled rating-list">
+											<li th:if="${product.xingji > 0} "><a href="#"><i class="fa fa-star"></i></a></li>
+											<li th:if="${product.xingji < 1} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											<li th:if="${product.xingji > 1} "><a href="#"><i class="fa fa-star"></i></a></li>
+											<li th:if="${product.xingji < 2} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											<li th:if="${product.xingji > 2} "><a href="#"><i class="fa fa-star"></i></a></li>
+											<li th:if="${product.xingji < 3} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											<li th:if="${product.xingji > 3} "><a href="#"><i class="fa fa-star"></i></a></li>
+											<li th:if="${product.xingji < 4} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+											<li th:if="${product.xingji > 4} "><a href="#"><i class="fa fa-star"></i></a></li>
+											<li th:if="${product.xingji < 5} "><a href="#"><i class="fa fa-star-o"></i></a></li>
+										</ul>
+										<span class="total-price">评价 (12)</span>
+									</div>
+									<ul class="list-unstyled list" >
+										<li> <i class="fa fa-heart"></i><a id="sc" href="javascript:void(0)" th:onclick="|saves(${product.pid})|"></a></li>
+									</ul>
+									<div class="txt-wrap" >
+										<h3 style="color: skyblue">[[${product.introduction}]]</h3>
+									</div>
+									<div class="text-holder" >
+										<span class="price">[[${product.originalPrice}]]￥<del>[[${product.price}]]￥</del></span>
+									</div>
+									<!-- Product Form of the Page -->
+									<div  class="product-form">
+										<fieldset>
+											<div class="row-val">
+												<button type="submit"  th:onclick="|cart(${product.pid})|">加入购物车</button>
+											</div>
+										</fieldset>
+									</div>
+									<!-- Product Form of the Page end -->
+								</div>
+								<!-- Detail Holder of the Page end -->
+							</div>
+						</div>
+					</div>
+				</section><!-- Mt Product Detial of the Page end -->
+				<div class="product-detail-tab wow fadeInUp" data-wow-delay="0.4s">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<ul class="mt-tabs text-center text-uppercase">
+									<li><a href="#tab1" class="active">宝贝描述</a></li>
+									<li><a href="#tab3">宝贝评价</a></li>
+								</ul>
+								<div class="tab-content">
+									<div id="tab1" th:each="pro,status:${product}">
+										<p style="color: black">[[${pro.description}]]</p>
+									</div>
+									<div id="tab3">
+										<div class="product-comment">
+											<div th:if="${evaluate}==null" class="mt-box">
+												<p >000</p>
+											</div>
+											<div th:each="eval,status:${evaluate}" class="mt-box">
+												<div class="mt-hold">
+													<ul class="mt-star">
+														<li><i class="fa fa-star"></i></li>
+														<li><i class="fa fa-star"></i></li>
+														<li><i class="fa fa-star"></i></li>
+														<li><i class="fa fa-star-o"></i></li>
+													</ul>
+													<span class="name">[[${eval.uname}]]</span>
+													<time datetime="2016-01-01">[[${eval.DateTime}]]</time>
+												</div>
+												<p  th:utext="${eval.comment}"></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- related products start here -->
+				<div class="related-products wow fadeInUp" data-wow-delay="0.4s">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+							<h2>相关产品</h2>
+								<div class="row">
+									<div class="col-xs-12">
+										<!-- mt product1 center start here -->
+										<div class="mt-product1 mt-paddingbottom20" th:each="product,status:${pro}">
+											<div class="box">
+												<div class="b1">
+													<div class="b2">
+														<a th:href="@{'/gem/view'+${product.pid}}" ><img src="http://placehold.it/215x215" th:src="@{'/'+${product.picture}}" alt="image description" width="250" height="250"></a>
+														<span class="caption">
+															<span class="new">NEW</span>
+														</span>
+														<ul class="mt-stars">
+															<li><i class="fa fa-star"></i></li>
+															<li><i class="fa fa-star"></i></li>
+															<li><i class="fa fa-star"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+														</ul>
+														<ul class="links">
+															<li><a href="javascript:void(0)" th:onclick="|cart(${product.pid})|"><i class="icon-handbag"></i><span>加入购物车</span></a></li>
+															<li><a href="javascript:void(0)" th:onclick="|save(${product.pid})|"><i class="icomoon icon-heart-empty"></i></a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="txt">
+												<strong class="title"><a href="product-detail.html">[[${product.pname}]]</a></strong>
+												<span class="price"><span>[[${product.price}]]￥</span></span>
+											</div>
+										</div><!-- mt product1 center end here -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- related products end here -->
+				</div>
+			</main><!-- mt main end here -->
+			<!-- footer of the Page -->
+			<footer id="mt-footer" class="style1 wow fadeInUp" data-wow-delay="0.4s" th:include="aashare::wei" ></footer><!-- footer of the Page end -->
+		</div><!-- W1 end here -->
+		<span id="back-top" class="fa fa-arrow-up"></span>
+	</div>
+	<script  th:src="@{/asserts/js/jquery.js}" ></script>
+	<!-- include jQuery -->
+	<script  th:src="@{/asserts/js/plugins.js}"></script>
+	<!-- include jQuery -->
+	<script  th:src="@{/asserts/js/jquery.main.js}" ></script>
+	<script  th:src="@{/asserts/js/my.js}" ></script>
+	<script type="text/javascript">
+		var boot;
+		var user=[[${session.user!=null}]];
+	$(function () {
+		if(user){
+			$("#sc").text("收藏");
+			var p=[[${product.pid}]];
+			$.post(base+"/collects",{
+				pid:p
+			},function (data) {
+				if(data==0){
+					$("#sc").text("收藏");
+					boot=true;
+				}else {
+					$("#sc").text("已收藏");
+					boot=false;
+				}
+			});
+		}else{
+			$("#sc").text("收藏");
+		}
+	});
+	function saves(pid) {
+		if(user){
+		if(boot){
+			$.ajax({
+				type: "GET",
+				url: base+"/wishs/"+pid,
+				success: function (data) {
+					if(data==1){
+						$("#sc").text("已收藏");
+						boot=false;
+					}
+				}
+			});
+		}else {
+			$.ajax({
+				type: "delete",
+				url: base+"/wishss/"+pid,
+				success: function (data) {
+					if(data==1){
+						$("#sc").text("收藏");
+						boot=true;
+					}
+				}
+			});
+		}
+		}else{
+			var truthBeTold = window.confirm("您还未登录,是否登录!");
+			if (truthBeTold) {
+				window.location=base+"/gem/login";
+			}
+		}
+	}
+
+
+
+	</script>
+
+</body>
+</html>

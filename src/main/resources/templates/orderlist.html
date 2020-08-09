@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台订单管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" th:href="@{/asserts/css/font.css}">
+    <link rel="stylesheet" th:href="@{/asserts/css/xadmin.css}">
+    <script th:src="@{/asserts/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/xadmin.js}"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/jquery.js}"></script>
+    <script th:inline="javascript">
+        var base = [[${#request.getContextPath()}]];
+    </script>
+
+</head>
+<body>
+<div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">演示</a>
+                <a>
+                    <cite>导航元素</cite></a>
+            </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+    </a>
+</div>
+
+<div class="layui-fluid" style="overflow-x:scroll;overflow-y:hidden">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+
+                            <select name="contrller"id="orderStatus" >
+                                <option value="0">订单状态</option>
+                                <option value="1">待付款</option>
+                                <option value="2">待发货</option>
+                                <option value="3">待收货</option>
+                                <option value="4">已收货</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input type="text"  placeholder="请输入订单号" id="no" autocomplete="off" class="layui-input"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input type="text"  placeholder="请输入名字" id="uname" autocomplete="off" class="layui-input"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+
+                            <button type="button" class="layui-btn" id="a" lay-submit="" lay-filter="search"
+                                    style="margin-left: 50px;">搜索
+                                <i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-header">
+                    <button class="layui-btn layui-btn-danger" onclick="delAll()">
+                        <i class="layui-icon"></i>删除或批量删除</button>
+                </div>
+                <div class="layui-card-body ">
+                    <from  >
+                        <table class="layui-table layui-form">
+                            <thead>
+                            <tr>
+                                <td>
+                                    <input type="hidden"  lay-skin="primary"/>
+                                </td>
+                                <th>订单编号</th>
+                                <th>收货人</th>
+                                <th>收货人地址</th>
+                                <th>收货人电话</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th>总价</th>
+                                <th>图片</th>
+                                <th>订单状态</th>
+                                <th>下单时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="loading">
+
+                            </tbody>
+                        </table>
+                    </from>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(function () {
+
+        $("#loading").load(base + "/order-table");
+
+//日期/订单编号/订单状态查询
+        $("#a").click(function () {
+            var no=$("#no").val();
+            var orderStatus = $("#orderStatus").val();
+            var start = $("#start").val();
+            var end = $("#end").val();
+            var uname=$("#uname").val();
+            if(start.length!=0&&end.length!=0) {
+                $("#loading").load(base + "/orderlist1", {"start": start, "end": end})
+            }else if (orderStatus!=0){
+                $("#loading").load(base + "/orderlist3",{"orderStatus":orderStatus})
+            }else if (no.length!=0) {
+                $("#loading").load(base + "/orderlist2",{"no":no})
+            }else if(uname.length!=0){
+                $("#loading").load(base + "/orderlist4",{"uname":uname})
+            }
+
+        });
+    });
+
+    layui.use(['laydate', 'form'],
+        function () {
+            var laydate = layui.laydate;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+        });
+
+    /*用户-停用*/
+    function member_stop(obj, id) {
+        layer.confirm('确认要停用吗？',
+            function (index) {
+
+                if ($(obj).attr('title') == '启用') {
+
+                    //发异步把用户状态进行更改
+                    $(obj).attr('title', '停用');
+                    $(obj).find('i').html('&#xe62f;');
+
+                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                    layer.msg('已停用!', {
+                        icon: 5,
+                        time: 1000
+                    });
+
+                } else {
+                    $(obj).attr('title', '启用');
+                    $(obj).find('i').html('&#xe601;');
+
+                    $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                    layer.msg('已启用!', {
+                        icon: 5,
+                        time: 1000
+                    });
+                }
+
+            });
+    }
+
+    /*单个订单-删除*/
+    function member_del(obj, oid) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.ajax({
+                type: "DELETE",
+                url: base+'/orderlist/'+oid,
+                success:function (data) {
+                    if (data=="1"){
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除',{icon:1,time:1000});
+                        location.replace(location.href);
+                    }
+                },
+                error:function () {
+
+                }
+            });
+
+        });
+    }
+
+    /*全部删除或批量删除*/
+    function delAll(argument) {
+        var ids = [];
+        // 获取选中的id
+        $('tbody input').each(function (index, el) {
+            if ($(this).prop('checked')) {
+                ids.push($(this).val())
+
+            }
+        });
+        layer.confirm('确认要删除吗？', ids, function (index) {
+            if (index) {
+                $.ajax({
+                    type: "DELETE",
+                    data: {
+                        "ids": ids,
+                    },
+                    url: base + '/orderlist',
+                    traditional: true,
+                    success: function (data) {
+                        if (data == "1") {
+                            layer.msg('删除成功', {icon: 1});
+                            location.replace(location.href);
+                        }
+                    }
+                })
+            }
+
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+    }
+
+    /*分页*/
+    function go(current) {
+        $("#loading").load(base+"/orderlist/" + current);
+        //window.location =base+"/orderlist/" + current
+    }
+
+
+
+
+</script>
+
+</html>
